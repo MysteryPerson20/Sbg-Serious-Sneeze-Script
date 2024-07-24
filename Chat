@@ -1,0 +1,18 @@
+-- LocalScript to send messages to the chat
+
+-- Wait for the game to load
+repeat wait() until game:IsLoaded()
+
+-- Function to send a chat message
+local function sendMessage(message)
+    local player = game.Players.LocalPlayer
+    if player and player.Character then
+        local chatService = game:GetService("Chat")
+        chatService:Chat(player.Character.Head, message, Enum.ChatColor.Blue)
+    end
+end
+
+-- Send the messages
+sendMessage("Ahh")
+wait(1)  -- Wait for 1 second before sending the next message
+sendMessage("ACHOOOOOO!!!")
