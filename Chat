@@ -15,5 +15,5 @@ end
 -- Send each message one time with a 1-second delay
 for _, message in ipairs(messages) do
     sendMessage(message)
-    wait(1.5) -- Wait 1 second before sending the next message
+    wait(1.8) -- Wait 1 second before sending the next message
 end
