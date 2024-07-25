@@ -1,18 +1,19 @@
--- LocalScript to send messages to the chat
+local player = game.Players.LocalPlayer
+repeat wait() until player.Character
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- Wait for the game to load
-repeat wait() until game:IsLoaded()
+-- Define the messages you want to send
+local messages = {"Ahhh", "..AACHOOOOOO..!!"}
 
--- Function to send a chat message
-local function sendMessage(message)
-    local player = game.Players.LocalPlayer
-    if player and player.Character then
-        local chatService = game:GetService("Chat")
-        chatService:Chat(player.Character.Head, message, Enum.ChatColor.Blue)
-    end
+-- Function to send messages to the chat
+local function sendMessage(text)
+    ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(text, "All")
 end
 
--- Send the messages
-sendMessage("Ahh")
-wait(1)  -- Wait for 1 second before sending the next message
-sendMessage("ACHOOOOOO!!!")
+-- Send each message one time with a 1-second delay
+for _, message in ipairs(messages) do
+    sendMessage(message)
+    wait(1) -- Wait 1 second before sending the next message
+end
